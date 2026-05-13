@@ -29,7 +29,7 @@ const createUser = (req, res) =>{
             console.error('Error inserting data:', err);
             return res.status(500).json({ message: 'Failed to insert data' });
         }
-        res.status(200).json({ message: 'Data inserted successfully', result });
+        res.status(200).json({ message: 'successfully', result });
     }) 
 }
 
