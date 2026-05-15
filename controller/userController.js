@@ -24,13 +24,20 @@ const createUser = (req, res) =>{
     let sql = 'INSERT INTO users (username, email, location) VALUES (? , ? , ?) '
     const values = [username, email, location];
 
-    db.query(sql , values , (err , result)=>{
+    db.query(sql, values, (err, result) => {
         if (err) {
-            console.error('Error inserting data:', err);
-            return res.status(500).json({ message: 'Failed to insert data' });
+            console.error('Error inserting data FULL:', err);
+
+            return res.status(500).json({
+                message: 'Failed to insert data',
+                sqlMessage: err.sqlMessage,
+                code: err.code,
+                errno: err.errno
+            });
         }
+
         res.status(200).json({ message: 'successfully', result });
-    }) 
+    });
 }
 
 
